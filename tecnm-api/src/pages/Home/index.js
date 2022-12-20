@@ -17,6 +17,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TableUsers from "../../components/TableUsers";
 import DataGrids from "../../components/DataGrids";
+import axios from "axios";
 
 
 
@@ -24,28 +25,41 @@ import DataGrids from "../../components/DataGrids";
 const Home = () => {
   const navigate = useNavigate()
     const {getRequest} = useAPI()
-    const [displayView, setDisplayView] = useState('view-A')
-    const [Alumnos, setAlumnos] = useState([])
-    const [ListAspirantes, setAspirantes] = useState([])
-    const [ListaDocumentos,setDocumentos] = useState([])
-
-    const LoadAlumnos = async() => {
-        let response = await getRequest('http://127.0.0.1:8000/Alumnos/Alumno/')
-        console.log('respuesta',response)
-        setAlumnos(response)
+    const url = 'http://127.0.0.1:8000/Alumnos/semestre/';
+    state={
+      result:'',
+      data:[],
+      modalInsertar: false,
+      modalEliminar: false,
+      form:{
+        id: '',
+        Nombre:'',
+        descripcion: ''
+      }
     }
+    const [displayView, setDisplayView] = useState('view-A')
+    // const [Alumnos, setAlumnos] = useState([])
+    // const [ListAspirantes, setAspirantes] = useState([])
+    // const [ListaDocumentos,setDocumentos] = useState([])
+
+  //   const LoadAlumnos = async() => {
+  //       let response = await getRequest('http://127.0.0.1:8000/Alumnos/Alumno/')
+  //       console.log('respuesta',response)
+  //       setAlumnos(response)
+  //   }
 
 
-    const LoadDocumentos = async() => {
-      let response = await getRequest('http://127.0.0.1:8000/Alumnos/detalledocumento/')
-      console.log('respuesta2',response)
-      setDocumentos(response)
-  }
+  //   const LoadDocumentos = async() => {
+  //     let response = await getRequest('http://127.0.0.1:8000/Alumnos/detalledocumento/')
+  //     console.log('respuesta2',response)
+  //     setDocumentos(response)
+  // }
 
-  const LoadAspirantes = async() => {
-     let response = await getRequest('http://127.0.0.1:8000/Alumnos/documento/')
-     setAspirantes(response)
-  }
+  // const LoadAspirantes = async() => {
+  //    let response = await getRequest('http://127.0.0.1:8000/Alumnos/documento/')
+  //    setAspirantes(response)
+  // }
+
 
     const handleClick = () => {
         displayView === 'view-A'
@@ -61,9 +75,9 @@ const Home = () => {
 
     
     useEffect(() => {
-        LoadAlumnos()
-        LoadDocumentos()
-        LoadAspirantes()
+        // LoadAlumnos()
+        // LoadDocumentos()
+        // LoadAspirantes()
       }, [])
 
 
@@ -71,8 +85,10 @@ const Home = () => {
     return (
         <div>
             <h1>Estoy en el home</h1>
-            <Text css_styles='fs_16'/>
-            <Text title='segundo text' css_styles='fs_16'/> 
+
+
+            {/* <Text css_styles='fs_16'/>
+            <Text title='segundo text' css_styles='fs_16'/>  */}
             
             {/* <Button 
             id = 'change_view'
@@ -116,14 +132,14 @@ const Home = () => {
             */}
           
             {/* <Contenedor Documentos={ListaDocumentos} css_styles='all-container' /> */}
-            <Tables  
+            {/* <Tables  
              id = 'change_view'
              name = 'change_view'
              value = 'Cambiar diseño'
              css_styles = 'fs_12'
              handleClick = {handleClick}
              rows = {Alumnos}
-            />
+            /> */}
 
             {/* <Tables2/>  */}
 
@@ -135,7 +151,7 @@ const Home = () => {
            
           
 
-           <DataGrids Data={ListAspirantes}/>
+           {/* <DataGrids Data={ListAspirantes}/> */}
 
            
             
